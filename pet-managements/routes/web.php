@@ -14,9 +14,7 @@ Route::resource('customers', CustomerController::class);
 // 🐶 Pets
 Route::resource('pets', PetController::class);
 
-// 🛠 Services
 
-// 📖 Care Guides (Cách nuôi)
 
 // 👨‍💼 Employees (view tĩnh)
 Route::get('/employees', function () {
