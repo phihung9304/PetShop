@@ -23,4 +23,9 @@ class Pet extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+      public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
 }

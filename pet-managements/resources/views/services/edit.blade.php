@@ -63,20 +63,32 @@ h4{
 }
 </style>
 
-<h4 class="mb-4">✏️ Sửa khách hàng</h4>
+<h4 class="mb-4">✏️ Sửa Dịch vụ</h4>
 
 <div class="form-box">
-<form action="{{ route('customers.update', $customer->id) }}" method="POST">
+<form action="{{ route('services.update', $service->id) }}" method="POST">
     @csrf
     @method('PUT')
 
-    <input type="text" name="name" value="{{ $customer->name }}" class="form-control mb-2" required>
-    <input type="text" name="phone" value="{{ $customer->phone }}" class="form-control mb-2">
-    <input type="email" name="email" value="{{ $customer->email }}" class="form-control mb-2">
-    <input type="text" name="address" value="{{ $customer->address }}" class="form-control mb-2">
+    <div class="mb-3">
+        <label class="fw-bold">Tên dịch vụ</label>
+        <input type="text" name="name" class="form-control"
+               value="{{ $service->name }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="fw-bold">Giá</label>
+        <input type="number" name="price" class="form-control"
+               value="{{ $service->price }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="fw-bold">Mô tả</label>
+        <textarea name="description" class="form-control" rows="4">{{ $service->description }}</textarea>
+    </div>
 
     <button class="btn btn-primary">Cập nhật</button>
-    <a href="{{ route('customers.index') }}" class="btn btn-secondary">Quay lại</a>
+    <a href="{{ route('services.index') }}" class="btn btn-secondary">Quay lại</a>
 </form>
 </div>
 

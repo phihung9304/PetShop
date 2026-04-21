@@ -1,63 +1,111 @@
 @extends('layouts.app')
 
 @section('content')
-
 <style>
 body{
     background:#faf6f2;
+    font-family: Arial, sans-serif;
 }
 
-/* TITLE */
 h4{
     color:#7c5a3a;
     font-weight:700;
 }
 
-/* TABLE CHUNG */
-.table{
-    background:#ffffff;
+/* =========================
+   TABLE WRAPPER (GIỐNG SERVICES)
+========================= */
+.table-wrapper{
+    border:1px solid #e0d6cc;
     border-radius:12px;
     overflow:hidden;
-    border:1px solid #ead7c3;
+    background:#fff;
     box-shadow:0 8px 20px rgba(124,90,58,0.08);
 }
 
-/* HEADER - GIỐNG 100% KHÁCH HÀNG */
-.table thead tr{
-    background: linear-gradient(
-        to right,
-        #7c5a3a,
-        #a67c52,
-        #d2b48c
-    );
+/* =========================
+   TABLE
+========================= */
+.table{
+    width:100%;
+    margin:0;
+    border-collapse:collapse;
+    table-layout:fixed;
 }
 
-/* HEADER CELL */
+/* HEADER */
 .table thead th{
-    border:none !important;
+    background:#7c5a3a;
+    color:#fff;
     padding:12px;
-}
-
-/* BODY */
-
-
-
-
-/* CELL */
-th, td{
-    padding:12px !important;
+    font-weight:600;
+    border:1px solid #e0d6cc;
+        text-align: center !important;
     vertical-align: middle;
 }
 
-/* BUTTON CHUẨN */
-.btn-primary,
+/* CELLS */
+.table th,
+.table td{
+    padding:12px;
+    border:1px solid #e0d6cc;
+    vertical-align:middle;
+    word-break:break-word;
+}
+
+/* ZEBRA */
+.table tbody tr:nth-child(odd){
+    background:#fff;
+}
+
+.table tbody tr:nth-child(even){
+    background:#fcf7f2;
+}
+
+/* HOVER */
+.table tbody tr:hover{
+    background:#f3e8dc;
+}
+
+.table tbody td{
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+/* =========================
+   PET COLUMN STYLE
+========================= */
+.services-col{
+    max-width:200px;
+    white-space:normal;
+    word-break:break-word;
+}
+
+/* BADGE */
+.badge-service{
+    display:inline-block;
+    margin:2px;
+    color:#000;
+}
+
+/* =========================
+   BUTTONS (GIỐNG SERVICES)
+========================= */
+.action-btns{
+    display:flex;
+    gap:6px;
+    justify-content:center;
+}
+
+.btn{
+    border-radius:8px !important;
+}
+
 .btn-success{
     background:#a67c52 !important;
     border:none !important;
-    color:#fff !important;
 }
 
-.btn-primary:hover,
 .btn-success:hover{
     background:#7c5a3a !important;
 }
@@ -81,25 +129,32 @@ th, td{
     color:#7c5a3a;
 }
 
-/* BUTTON RADIUS */
-.btn{
-    border-radius:8px;
+/* EMPTY */
+.empty{
+    padding:20px;
+    color:#999;
 }
 </style>
-    <h4 class="mb-4">🐶 Quản lý Thú cưng</h4>
 
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+<h4 class="mb-4">🐶 Quản lý Thú cưng</h4>
 
-    <div class="mb-3">
-        <a href="{{ route('pets.create') }}" class="btn btn-success">
-            <i class="bi bi-plus-circle"></i> Thêm thú cưng
-        </a>
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
     </div>
+@endif
 
-    <div class="table-responsive">
-        <table class="table table-striped table-hover align-middle">
+<div class="mb-3 d-flex justify-content-between">
+    <a href="{{ route('pets.create') }}" class="btn btn-success">
+        ➕ Thêm thú cưng
+    </a>
+</div>
+
+<!-- WRAPPER TABLE (GIỐNG SERVICES) -->
+<div class="table-wrapper">
+    <div class="table-responsive table-wrapper">
+        <table class="table align-middle">
+
             <thead>
                 <tr>
                     <th>ID</th>
@@ -107,9 +162,11 @@ th, td{
                     <th>Loài</th>
                     <th>Tuổi</th>
                     <th>Chủ sở hữu</th>
+                    <th>Dịch vụ</th>
                     <th>Hành động</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach ($pets as $pet)
                     <tr>
@@ -118,18 +175,41 @@ th, td{
                         <td>{{ $pet->species }}</td>
                         <td>{{ $pet->age }}</td>
                         <td>{{ $pet->customer->name }}</td>
-                        <td>
-                            <a href="{{ route('pets.edit', $pet->id) }}" class="btn btn-sm btn-warning">Sửa</a>
 
-                            <form action="{{ route('pets.destroy', $pet->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger" onclick="return confirm('Xóa?')">Xóa</button>
-                            </form>
+                        <td class="services-col">
+                            @if($pet->services->count())
+                                @foreach($pet->services as $service)
+                                    <span class="badge-service">
+                                        {{ $service->name }}
+                                    </span>
+                                @endforeach
+                            @else
+                                <span class="text-muted">Chưa có</span>
+                            @endif
+                        </td>
+
+                        <td>
+                            <div class="action-btns">
+                                <a href="{{ route('pets.edit', $pet->id) }}" class="btn btn-sm btn-warning">
+                                    Sửa
+                                </a>
+
+                                <form action="{{ route('pets.destroy', $pet->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Xóa?')">
+                                        Xóa
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
+
         </table>
     </div>
+</div>
+
 @endsection

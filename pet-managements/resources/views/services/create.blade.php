@@ -63,19 +63,29 @@ h4{
 }
 </style>
 
-<h4 class="mb-4">➕ Thêm khách hàng</h4>
+<h4 class="mb-4">➕ Thêm Dịch vụ</h4>
 
 <div class="form-box">
-<form action="{{ route('customers.store') }}" method="POST">
+<form action="{{ route('services.store') }}" method="POST">
     @csrf
 
-    <input type="text" name="name" placeholder="Tên" class="form-control mb-2" required>
-    <input type="text" name="phone" placeholder="SĐT" class="form-control mb-2">
-    <input type="email" name="email" placeholder="Email" class="form-control mb-2">
-    <input type="text" name="address" placeholder="Địa chỉ" class="form-control mb-2">
+    <div class="mb-3">
+        <label class="fw-bold">Tên dịch vụ</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="fw-bold">Giá</label>
+        <input type="number" name="price" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="fw-bold">Mô tả</label>
+        <textarea name="description" class="form-control" rows="4"></textarea>
+    </div>
 
     <button class="btn btn-success">Lưu</button>
-    <a href="{{ route('customers.index') }}" class="btn btn-secondary">Quay lại</a>
+    <a href="{{ route('services.index') }}" class="btn btn-secondary">Quay lại</a>
 </form>
 </div>
 

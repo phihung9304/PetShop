@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Pet;
+use App\Models\Service;
 
 class DashboardController extends Controller
 {
@@ -12,7 +13,11 @@ class DashboardController extends Controller
     {
         $customerCount = Customer::count();
         $petCount = Pet::count();
-
-        return view('dashboard', compact('customerCount', 'petCount'));
+        $serviceCount = Service::count(); 
+        return view('dashboard', compact(
+            'customerCount',
+            'petCount',
+            'serviceCount' 
+        ));
     }
 }
