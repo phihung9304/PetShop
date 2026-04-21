@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ServiceController;
 
 // 🏠 Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -16,9 +15,10 @@ Route::resource('customers', CustomerController::class);
 Route::resource('pets', PetController::class);
 
 // 🛠 Services
-Route::resource('services', ServiceController::class);
 
 // 📖 Care Guides (Cách nuôi)
 
 // 👨‍💼 Employees (view tĩnh)
-Route::view('/employees', 'employees.index')->name('employees.index');
+Route::get('/employees', function () {
+    return view('employees.index');
+});
