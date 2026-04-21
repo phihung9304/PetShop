@@ -5,6 +5,8 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CareGuideController;
+
 // 🏠 Dashboard
 Route::get('/', [DashboardController::class, 'index']);
 
@@ -18,5 +20,7 @@ Route::resource('pets', PetController::class);
 Route::get('/employees', function () {
     return view('employees.index');
 });
+
+Route::resource('care-guides', CareGuideController::class);
 
 Route::resource('services', ServiceController::class);
