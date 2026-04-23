@@ -20,7 +20,7 @@ Route::resource('pets', PetController::class);
 Route::resource('services', ServiceController::class);
 
 // 📖 Care Guides (Cách nuôi)
-Route::resource('care-guides', CareGuideController::class);
-
+Route::resource('care-guides', CareGuideController::class)
+    ->names('care.guides');
 // 👨‍💼 Employees (view tĩnh)
 Route::view('/employees', 'employees.index')->name('employees.index');
