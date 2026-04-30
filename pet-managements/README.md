@@ -272,6 +272,7 @@ Route::resource('pets', PetController::class);
 - php artisan key:generate
 
 ### 4. Cấu hình database
+
 Mở file .env và chỉnh:
 DB_DATABASE=pet_management
 DB_USERNAME=root
@@ -284,4 +285,8 @@ DB_PASSWORD=
 
 - php artisan serve
 
-## TEAM INTRODUCTION:
+## Thành viên nhóm:
+
+- Lê Phi Hùng - 20220838   
+- Doãn Ngọc Ánh - 20222316
+- Đặng Thị Kim Anh - 20222259
