@@ -98,3 +98,95 @@ Hệ thống Pet Management System cung cấp đầy đủ các chức năng qu�
 - Tìm kiếm nhanh theo tên, loại, khách hàng  
 - Hiển thị dữ liệu rõ ràng, dễ sử dụng  
 - Giao diện thân thiện với người dùng  
+
+## 3. 📂 Cấu trúc thư mục
+
+Dự án được tổ chức theo kiến trúc MVC của Laravel, với các thư mục chính như sau:
+
+```bash
+PET-MANAGEMENTS/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/              # Xử lý logic cho từng module
+│   │       ├── CareGuideController.php
+│   │       ├── CustomerController.php
+│   │       ├── DashboardController.php
+│   │       ├── EmployeeController.php
+│   │       ├── InventoryController.php
+│   │       ├── PetController.php
+│   │       ├── ProductController.php
+│   │       └── ServiceController.php
+│
+│   ├── Models/                       # Đại diện cho các bảng trong database
+│   │       ├── CareGuide.php
+│   │       ├── Customer.php
+│   │       ├── Employee.php
+│   │       ├── Inventory.php
+│   │       ├── Payment.php
+│   │       ├── Pet.php
+│   │       ├── Product.php
+│   │       ├── Service.php
+│   │       └── User.php
+│
+├── database/
+│   ├── factories/                    # Factory tạo dữ liệu mẫu
+│   ├── migrations/                  # Tạo cấu trúc database
+│   │       ├── create_users_table.php
+│   │       ├── create_products_table.php
+│   │       ├── create_services_table.php
+│   │       ├── create_customers_table.php
+│   │       ├── create_payments_table.php
+│   │       ├── create_pets_table.php
+│   │       ├── create_pet_service_table.php
+│   │       ├── create_employees_table.php
+│   │       ├── create_inventories_table.php
+│   │       └── ...
+│   ├── seeders/                     # Dữ liệu mẫu (nếu có)
+│
+├── resources/
+│   ├── views/                       # Giao diện Blade
+│   │   ├── layouts/
+│   │   │       └── app.blade.php        # Layout chính dùng chung
+│   │   │
+│   │   ├── care-guides/                 # Module hướng dẫn chăm sóc
+│   │   │       ├── index.blade.php      # Danh sách
+│   │   │       ├── create.blade.php     # Thêm mới
+│   │   │       └── edit.blade.php       # Chỉnh sửa
+│   │   │
+│   │   ├── customers/                  # Module khách hàng
+│   │   │       ├── index.blade.php
+│   │   │       ├── create.blade.php
+│   │   │       └── edit.blade.php
+│   │   │
+│   │   ├── employees/                  # Module nhân viên
+│   │   │       ├── index.blade.php
+│   │   │       ├── create.blade.php
+│   │   │       └── edit.blade.php
+│   │   │
+│   │   ├── pets/                       # Module thú cưng
+│   │   │       ├── index.blade.php
+│   │   │       ├── create.blade.php
+│   │   │       └── edit.blade.php
+│   │   │
+│   │   ├── products/                   # Module sản phẩm
+│   │   │       ├── index.blade.php
+│   │   │       ├── create.blade.php
+│   │   │       └── edit.blade.php
+│   │   │
+│   │   ├── services/                   # Module dịch vụ
+│   │   │       ├── index.blade.php
+│   │   │       ├── create.blade.php
+│   │   │       └── edit.blade.php
+│   │   │
+│   │   ├── dashboard.blade.php         # Trang dashboard
+│   │   └── welcome.blade.php           # Trang mặc định
+│
+├── routes/
+│   ├── web.php                      # Định nghĩa route web
+│   └── console.php                 # Route cho CLI
+│
+├── storage/                         # Lưu file, log, cache
+├── .env                             # Cấu hình môi trường
+├── composer.json                    # Quản lý thư viện PHP
+├── package.json                     # Quản lý thư viện frontend
+└── artisan                          # CLI Laravel
