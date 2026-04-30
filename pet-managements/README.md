@@ -107,7 +107,7 @@ Dự án được tổ chức theo kiến trúc MVC của Laravel, với các th
 PET-MANAGEMENTS/
 ├── app/
 │   ├── Http/
-│   │   └── Controllers/              # Xử lý logic cho từng module
+│   │   └── Controllers/             
 │   │       ├── CareGuideController.php
 │   │       ├── CustomerController.php
 │   │       ├── DashboardController.php
@@ -117,7 +117,7 @@ PET-MANAGEMENTS/
 │   │       ├── ProductController.php
 │   │       └── ServiceController.php
 │
-│   ├── Models/                       # Đại diện cho các bảng trong database
+│   ├── Models/                       
 │   │       ├── CareGuide.php
 │   │       ├── Customer.php
 │   │       ├── Employee.php
@@ -129,64 +129,126 @@ PET-MANAGEMENTS/
 │   │       └── User.php
 │
 ├── database/
-│   ├── factories/                    # Factory tạo dữ liệu mẫu
-│   ├── migrations/                  # Tạo cấu trúc database
-│   │       ├── create_users_table.php
-│   │       ├── create_products_table.php
-│   │       ├── create_services_table.php
-│   │       ├── create_customers_table.php
-│   │       ├── create_payments_table.php
-│   │       ├── create_pets_table.php
-│   │       ├── create_pet_service_table.php
-│   │       ├── create_employees_table.php
-│   │       ├── create_inventories_table.php
-│   │       └── ...
-│   ├── seeders/                     # Dữ liệu mẫu (nếu có)
+│   ├── factories/                  
+│   ├── migrations/                  
+│   │       ├── 0001_01_01_000000_create_users_table.php
+│   │       ├── 0001_01_01_000001_create_cache_table.php
+│   │       ├── 0001_01_01_000002_create_jobs_table.php
+│   │
+│   │       ├── 2026_04_09_090628_create_care_guides_table.php
+│   │       ├── 2026_04_09_090632_create_products_table.php
+│   │       ├── 2026_04_09_090635_create_services_table.php
+│   │       ├── 2026_04_09_090638_create_customers_table.php
+│   │       ├── 2026_04_09_090641_create_payments_table.php
+│   │       ├── 2026_04_09_093252_create_pets_table.php
+│   │       ├── 2026_04_14_093740_create_pet_service_table.php
+│   │       ├── 2026_04_25_064008_create_employees_table.php
+│   │       ├── 2026_04_25_081407_create_inventories_table.php
+│   │       └── 2026_04_25_081749_remove_stock_from_products_table.php
+│   ├── seeders/                    
 │
 ├── resources/
-│   ├── views/                       # Giao diện Blade
+│   ├── views/                      
 │   │   ├── layouts/
-│   │   │       └── app.blade.php        # Layout chính dùng chung
+│   │   │       └── app.blade.php   
 │   │   │
-│   │   ├── care-guides/                 # Module hướng dẫn chăm sóc
-│   │   │       ├── index.blade.php      # Danh sách
-│   │   │       ├── create.blade.php     # Thêm mới
-│   │   │       └── edit.blade.php       # Chỉnh sửa
+│   │   ├── care-guides/                
+│   │   │       ├── index.blade.php     
+│   │   │       ├── create.blade.php    
+│   │   │       └── edit.blade.php    
 │   │   │
-│   │   ├── customers/                  # Module khách hàng
+│   │   ├── customers/                  
 │   │   │       ├── index.blade.php
 │   │   │       ├── create.blade.php
 │   │   │       └── edit.blade.php
 │   │   │
-│   │   ├── employees/                  # Module nhân viên
+│   │   ├── employees/                 
 │   │   │       ├── index.blade.php
 │   │   │       ├── create.blade.php
 │   │   │       └── edit.blade.php
 │   │   │
-│   │   ├── pets/                       # Module thú cưng
+│   │   ├── pets/                     
 │   │   │       ├── index.blade.php
 │   │   │       ├── create.blade.php
 │   │   │       └── edit.blade.php
 │   │   │
-│   │   ├── products/                   # Module sản phẩm
+│   │   ├── products/                  
 │   │   │       ├── index.blade.php
 │   │   │       ├── create.blade.php
 │   │   │       └── edit.blade.php
 │   │   │
-│   │   ├── services/                   # Module dịch vụ
+│   │   ├── services/              
 │   │   │       ├── index.blade.php
 │   │   │       ├── create.blade.php
 │   │   │       └── edit.blade.php
 │   │   │
-│   │   ├── dashboard.blade.php         # Trang dashboard
-│   │   └── welcome.blade.php           # Trang mặc định
+│   │   ├── dashboard.blade.php     
+│   │   └── welcome.blade.php         
 │
 ├── routes/
-│   ├── web.php                      # Định nghĩa route web
-│   └── console.php                 # Route cho CLI
+│   ├── web.php                   
+│   └── console.php             
 │
-├── storage/                         # Lưu file, log, cache
-├── .env                             # Cấu hình môi trường
-├── composer.json                    # Quản lý thư viện PHP
-├── package.json                     # Quản lý thư viện frontend
-└── artisan                          # CLI Laravel
+├── .env                          
+└── artisan                  
+
+## 4. 🛠️ Công nghệ và quy chuẩn
+
+### 🔹 Công nghệ sử dụng
+
+Hệ thống được xây dựng باستخدام các công nghệ hiện đại trong phát triển web:
+
+- **Backend:** PHP với Laravel Framework  
+- **Frontend:** Blade Template, HTML5, CSS3, JavaScript  
+- **Database:** MySQL  
+- **Server:** Apache / Nginx  
+- **Package Manager:** Composer, NPM  
+
+---
+
+### 🔹 Kiến trúc hệ thống
+
+Dự án áp dụng mô hình **MVC (Model - View - Controller)**:
+
+- **Model:** Xử lý dữ liệu và tương tác với database  
+- **View:** Hiển thị giao diện người dùng باستخدام Blade  
+- **Controller:** Xử lý logic và điều hướng request  
+
+---
+
+### 🔹 Quy chuẩn code
+
+#### 📌 1. Naming Convention
+- **Controller:** `PetController`, `CustomerController`  
+- **Model:** `Pet`, `Customer`, `Product`  
+- **Database table:** dạng số nhiều (`pets`, `customers`, `products`)  
+- **Biến:** camelCase (`petName`, `customerList`)  
+
+---
+
+#### 📌 2. Quy chuẩn thư mục
+- Mỗi module (pets, customers, products,...) có:
+  - 1 Controller riêng  
+  - 1 Model riêng  
+  - 1 thư mục view riêng  
+
+---
+
+#### 📌 3. Quy chuẩn CRUD
+Mỗi module đều tuân theo chuẩn CRUD:
+
+- `index()` → Hiển thị danh sách  
+- `create()` → Form thêm mới  
+- `store()` → Lưu dữ liệu  
+- `edit()` → Form chỉnh sửa  
+- `update()` → Cập nhật  
+- `destroy()` → Xóa  
+
+---
+
+#### 📌 4. Routing
+- Sử dụng route trong `web.php`  
+- Áp dụng RESTful Resource Controller:
+
+```php
+Route::resource('pets', PetController::class);
