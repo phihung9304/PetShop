@@ -1,6 +1,6 @@
 ## 1. 📌 Tên và mô tả
 
-# 🐾 Pet Management System
+# 🐾 Pet Management
 
 **Pet Management** là một ứng dụng web được phát triển Laravel (PHP Framework), nhằm hỗ trợ quản lý thông tin thú cưng và chủ nuôi một cách khoa học và hiệu quả.
 
@@ -212,7 +212,7 @@ Hệ thống được xây dựng Laravel các công nghệ hiện đại trong 
 Dự án áp dụng mô hình **MVC (Model - View - Controller)**:
 
 - **Model:** Xử lý dữ liệu và tương tác với database  
-- **View:** Hiển thị giao diện người dùng باستخدام Blade  
+- **View:** Hiển thị giao diện người dùng Blade
 - **Controller:** Xử lý logic và điều hướng request  
 
 ---
