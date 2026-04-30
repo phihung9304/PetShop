@@ -253,3 +253,35 @@ Mỗi module đều tuân theo chuẩn CRUD:
 
 ```php
 Route::resource('pets', PetController::class);
+
+```
+
+## 5. ▶️ Hướng dẫn cài đặt và chạy dự án
+
+### 1. Clone dự án
+
+- git clone https://github.com/phihung9304/PetShop
+
+### 2. Cài đặt thư viện
+
+- composer install
+
+### 3. Cấu hình môi trường
+
+- cp .env.example .env
+- php artisan key:generate
+
+### 4. Cấu hình database
+Mở file .env và chỉnh:
+DB_DATABASE=pet_management
+DB_USERNAME=root
+DB_PASSWORD=
+
+### 5. Chạy migration
+- php artisan migrate
+
+### 6. Chạy ứng dụng
+
+- php artisan serve
+
+## TEAM INTRODUCTION:
