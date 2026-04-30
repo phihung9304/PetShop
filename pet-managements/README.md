@@ -191,17 +191,18 @@ PET-MANAGEMENTS/
 │
 ├── .env                          
 └── artisan                  
+```
 
 ## 4. 🛠️ Công nghệ và quy chuẩn
 
 ### 🔹 Công nghệ sử dụng
 
-Hệ thống được xây dựng باستخدام các công nghệ hiện đại trong phát triển web:
+Hệ thống được xây dựng Laravel các công nghệ hiện đại trong phát triển web:
 
 - **Backend:** PHP với Laravel Framework  
 - **Frontend:** Blade Template, HTML5, CSS3, JavaScript  
 - **Database:** MySQL  
-- **Server:** Apache / Nginx  
+- **Server:** Apache
 - **Package Manager:** Composer, NPM  
 
 ---
