@@ -39,7 +39,7 @@ class CareGuideController extends Controller
         CareGuide::create($request->all());
 
         return redirect()
-            ->route('care.guides.index')
+            ->route('care-guides.index')
             ->with('success', 'Thêm cách nuôi thành công!');
     }
 
@@ -77,7 +77,7 @@ class CareGuideController extends Controller
         $guide->update($request->all());
 
         return redirect()
-            ->route('care.guides.index')
+            ->route('care-guides.index')
             ->with('success', 'Cập nhật thành công!');
     }
 
@@ -90,7 +90,7 @@ class CareGuideController extends Controller
         $guide->delete();
 
         return redirect()
-            ->route('care.guides.index')
+            ->route('care-guides.index')
             ->with('success', 'Xóa thành công!');
     }
 }

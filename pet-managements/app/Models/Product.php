@@ -12,7 +12,11 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        'stock',
         'category'
     ];
+
+    public function inventory()
+{
+    return $this->hasOne(Inventory::class);
+}
 }

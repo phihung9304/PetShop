@@ -1,59 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## 1. 📌 Tên và mô tả
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🐾 Pet Management System
 
-## About Laravel
+**Pet Management** là một ứng dụng web được phát triển Laravel (PHP Framework), nhằm hỗ trợ quản lý thông tin thú cưng và chủ nuôi một cách khoa học và hiệu quả.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Hệ thống cho phép người dùng thực hiện các thao tác quản lý cơ bản như thêm, sửa, xóa và tra cứu dữ liệu liên quan đến thú cưng. Mỗi thú cưng được liên kết với một chủ nuôi cụ thể, giúp việc theo dõi và quản lý trở nên dễ dàng hơn.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Ứng dụng được thiết kế với giao diện đơn giản, thân thiện với người dùng, phù hợp cho:
+- 📚 Sinh viên thực hiện bài tập lớn hoặc đồ án môn học  
+- 🏥 Phòng khám thú y cần quản lý thông tin khách hàng  
+- 🐕 Cửa hàng thú cưng theo dõi thú và chủ sở hữu  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Ngoài ra, hệ thống còn có thể được mở rộng thêm nhiều chức năng nâng cao như quản lý lịch tiêm phòng, hồ sơ sức khỏe, hoặc tích hợp API trong tương lai.
 
-## Learning Laravel
+### 🎯 Mục tiêu của dự án
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Xây dựng một hệ thống CRUD hoàn chỉnh Laravel  
+- Áp dụng mô hình MVC trong phát triển web  
+- Thực hành kết nối và thao tác với cơ sở dữ liệu MySQL  
+- Tạo nền tảng để phát triển các tính năng nâng cao sau này  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 💡 Ý nghĩa
 
-## Laravel Sponsors
+Dự án không chỉ phục vụ mục đích học tập mà còn có tiềm năng ứng dụng thực tế trong việc quản lý thú cưng tại các cơ sở nhỏ, giúp tiết kiệm thời gian và nâng cao hiệu quả quản lý.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 2. ✨ Tính năng chính
 
-### Premium Partners
+Hệ thống Pet Management System cung cấp đầy đủ các chức năng quản lý trong lĩnh vực chăm sóc và kinh doanh thú cưng, bao gồm:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 👤 Quản lý khách hàng
+- Thêm, sửa, xóa thông tin khách hàng  
+- Lưu trữ thông tin liên hệ (tên, số điện thoại, địa chỉ, email)  
+- Tra cứu danh sách khách hàng  
+- Liên kết khách hàng với thú cưng  
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🐾 Quản lý thú cưng
+- Thêm, cập nhật và xóa thông tin thú cưng  
+- Quản lý các thuộc tính: tên, loại, giống, tuổi, tình trạng  
+- Gán thú cưng cho từng khách hàng  
+- Xem danh sách và chi tiết từng thú cưng  
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 💳 Quản lý thanh toán
+- Tạo và quản lý hóa đơn  
+- Theo dõi lịch sử thanh toán của khách hàng  
+- Hỗ trợ nhiều hình thức thanh toán (tiền mặt, chuyển khoản, v.v.)  
+- Tính toán tổng chi phí dịch vụ và sản phẩm  
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 👨‍💼 Quản lý nhân viên
+- Thêm, sửa, xóa thông tin nhân viên  
+- Phân quyền (nếu có)  
+- Quản lý thông tin cá nhân và vai trò  
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🛠️ Quản lý dịch vụ
+- Tạo và quản lý các dịch vụ (tắm, cắt tỉa, khám bệnh...)  
+- Cập nhật giá dịch vụ  
+- Liên kết dịch vụ với hóa đơn  
+
+---
+
+### 🛒 Quản lý sản phẩm
+- Quản lý danh sách sản phẩm (thức ăn, phụ kiện...)  
+- Thêm, sửa, xóa sản phẩm  
+- Cập nhật giá và số lượng  
+
+---
+
+### 📦 Quản lý kho
+- Theo dõi số lượng tồn kho  
+- Cập nhật khi nhập / xuất sản phẩm  
+- Cảnh báo khi sản phẩm sắp hết (nếu có)  
+
+---
+
+### 📚 Quản lý cách nuôi (hướng dẫn chăm sóc)
+- Lưu trữ thông tin hướng dẫn chăm sóc thú cưng  
+- Phân loại theo loại thú (chó, mèo, v.v.)  
+- Giúp người dùng tra cứu dễ dàng  
+
+---
+
+### 📊 Quản lý doanh thu
+- Thống kê doanh thu theo ngày / tháng / năm  
+- Tổng hợp từ dịch vụ và sản phẩm  
+- Hỗ trợ theo dõi hiệu quả kinh doanh  
+
+---
+
+### 🔍 Tìm kiếm và hệ thống
+- Tìm kiếm nhanh theo tên, loại, khách hàng  
+- Hiển thị dữ liệu rõ ràng, dễ sử dụng  
+- Giao diện thân thiện với người dùng  

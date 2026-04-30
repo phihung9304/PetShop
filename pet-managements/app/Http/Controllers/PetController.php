@@ -18,53 +18,53 @@ class PetController extends Controller
 
     // ➕ Form thêm
     public function create()
-{
-    $customers = Customer::all();
-    $services = Service::all();
+    {
+        $customers = Customer::all();
+        $services = Service::all();
 
-    return view('pets.create', compact('customers', 'services'));
-}
+        return view('pets.create', compact('customers', 'services'));
+    }
 
     // 💾 Lưu dữ liệu
     public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'species' => 'required',
-        'customer_id' => 'required|exists:customers,id'
-    ]);
+    {
+        $request->validate([
+            'name' => 'required',
+            'species' => 'required',
+            'customer_id' => 'nullable|exists:customers,id'
+        ]);
 
-    $pet = Pet::create($request->all());
+        $pet = Pet::create($request->all());
 
-    $pet->services()->sync($request->services ?? []);
+        $pet->services()->sync($request->services ?? []);
 
-    return redirect()->route('pets.index')
-                     ->with('success', 'Thêm thú cưng thành công!');
-}
+        return redirect()->route('pets.index')
+            ->with('success', 'Thêm thú cưng thành công!');
+    }
 
     // ✏️ Form sửa
-public function edit($id)
-{
-    $pet = Pet::with('services')->findOrFail($id);
-    $customers = Customer::all();
-    $services = Service::all();
+    public function edit($id)
+    {
+        $pet = Pet::with('services')->findOrFail($id);
+        $customers = Customer::all();
+        $services = Service::all();
 
-    return view('pets.edit', compact('pet', 'customers', 'services'));
-}
+        return view('pets.edit', compact('pet', 'customers', 'services'));
+    }
 
     // 🔄 Cập nhật
-public function update(Request $request, $id)
-{
-    $pet = Pet::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $pet = Pet::findOrFail($id);
 
-    $pet->update($request->all());
+        $pet->update($request->all());
 
-    // 👉 cập nhật dịch vụ
-    $pet->services()->sync($request->services ?? []);
+        // 👉 cập nhật dịch vụ
+        $pet->services()->sync($request->services ?? []);
 
-    return redirect()->route('pets.index')
-                     ->with('success', 'Cập nhật thành công!');
-}
+        return redirect()->route('pets.index')
+            ->with('success', 'Cập nhật thành công!');
+    }
 
     // 🗑️ Xóa
     public function destroy($id)
@@ -73,6 +73,6 @@ public function update(Request $request, $id)
         $pet->delete();
 
         return redirect()->route('pets.index')
-                         ->with('success', 'Xóa thành công!');
+            ->with('success', 'Xóa thành công!');
     }
 }

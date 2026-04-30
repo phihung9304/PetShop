@@ -13,8 +13,8 @@
         }
 
         /* =========================
-           TABLE WRAPPER (GIỐNG PETS)
-        ========================= */
+               TABLE WRAPPER (GIỐNG PETS)
+            ========================= */
         .table-wrapper {
             border: 1px solid #e0d6cc;
             border-radius: 12px;
@@ -24,8 +24,8 @@
         }
 
         /* =========================
-           TABLE CORE
-        ========================= */
+               TABLE CORE
+            ========================= */
         .table {
             width: 100%;
             margin: 0;
@@ -55,8 +55,8 @@
         }
 
         /* =========================
-           ZEBRA ROW (GIỐNG PETS)
-        ========================= */
+               ZEBRA ROW (GIỐNG PETS)
+            ========================= */
         .table tbody tr:nth-child(odd) {
             background: #fff;
         }
@@ -70,19 +70,19 @@
             background: #f3e8dc;
         }
 
-        .table thead th{
-    text-align: center !important;
-    vertical-align: middle;
-}
+        .table thead th {
+            text-align: center !important;
+            vertical-align: middle;
+        }
 
-.table tbody td{
-    text-align: center !important;
-    vertical-align: middle;
-}
+        .table tbody td {
+            text-align: center !important;
+            vertical-align: middle;
+        }
 
         /* =========================
-           TEXT STYLE
-        ========================= */
+               TEXT STYLE
+            ========================= */
         .service-name {
             max-width: 180px;
         }
@@ -97,8 +97,8 @@
         }
 
         /* =========================
-           ACTION BUTTONS
-        ========================= */
+               ACTION BUTTONS
+            ========================= */
         .action-btns {
             display: flex;
             gap: 6px;
@@ -127,8 +127,9 @@
 
         .btn-danger {
             background: #8b5e3c !important;
-            border: none !important;color: #fff !important;
-}
+            border: none !important;
+            color: #fff !important;
+        }
 
         /* ALERT */
         .alert-success {
@@ -147,8 +148,10 @@
     <h4 class="mb-4">💼 Quản lý Dịch vụ</h4>
 
     @if (session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
     @endif
 
@@ -213,8 +216,10 @@
                                 Chưa có dịch vụ nào
                             </td>
                         </tr>
-                    @endforelse</tbody>
+                    @endforelse
+                </tbody>
 
-            </table></div>
+            </table>
+        </div>
     </div>
 @endsection

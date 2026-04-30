@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('breed')->nullable();
             $table->integer('age')->nullable();
             $table->float('weight')->nullable();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

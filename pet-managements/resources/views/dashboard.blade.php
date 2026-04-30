@@ -106,7 +106,7 @@
                 <div class="card dashboard-card card-3 h-100 text-center p-3">
                     <div class="icon">📦</div>
                     <h6>Sản phẩm</h6>
-                    <div class="number">0</div>
+                    <div class="number" id="productCount">0</div>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@
                 <div class="card dashboard-card card-4 h-100 text-center p-3">
                     <div class="icon">🛎️</div>
                     <h6>Dịch vụ</h6>
-                    <div class="number">{{ $serviceCount }}</div>
+                    <div class="number" id="serviceCount">0</div>
                 </div>
             </div>
 
@@ -144,5 +144,7 @@
 
         countUp("customerCount", {{ $customerCount }});
         countUp("petCount", {{ $petCount }});
+        countUp("productCount", {{ $productCount }});
+        countUp("serviceCount", {{ $serviceCount }});
     </script>
 @endsection

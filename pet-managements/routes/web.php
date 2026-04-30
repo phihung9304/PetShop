@@ -6,6 +6,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CareGuideController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController;
 
 // 🏠 Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -19,8 +21,11 @@ Route::resource('pets', PetController::class);
 // 🛠 Services
 Route::resource('services', ServiceController::class);
 
-// 📖 Care Guides (Cách nuôi)
-Route::resource('care-guides', CareGuideController::class)
-    ->names('care.guides');
-// 👨‍💼 Employees (view tĩnh)
-Route::view('/employees', 'employees.index')->name('employees.index');
+// 📖 Care Guides 
+Route::resource('care-guides', CareGuideController::class);
+
+// 👨‍💼 Employees 
+Route::resource('employees', EmployeeController::class);
+
+// Product
+Route::resource('products', ProductController::class);
