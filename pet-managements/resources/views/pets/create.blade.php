@@ -75,25 +75,37 @@
     <div class="form-box">
         <form action="{{ route('pets.store') }}" method="POST">
             @csrf
+            <div class="mb-3">
+                <label class="form-label fw-bold">Tên</label>
+                <input type="text" name="name" placeholder="Tên" class="form-control mb-2" required>
+            </div>
 
-            <input type="text" name="name" placeholder="Tên" class="form-control mb-2" required>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Loài</label>
+                <input type="text" name="species" placeholder="Loài" class="form-control mb-2" required>
+            </div>
 
-            <input type="text" name="species" placeholder="Loài" class="form-control mb-2" required>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Tuổi</label>
+                <input type="number" name="age" placeholder="Tuổi" class="form-control mb-2">
+            </div>
 
-            <input type="text" name="breed" placeholder="Giống" class="form-control mb-2">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Cân nặng</label>
+                <input type="number" name="weight" placeholder="Cân nặng" class="form-control mb-2">
+            </div>
 
-            <input type="number" name="age" placeholder="Tuổi" class="form-control mb-2">
-
-            <input type="number" step="0.1" name="weight" placeholder="Cân nặng" class="form-control mb-2">
-
-            <select name="customer_id" class="form-control mb-3">
-                <option value="">-- Không có khách hàng --</option>
-                @foreach ($customers as $customer)
-                    <option value="{{ $customer->id }}">
-                        {{ $customer->name }}
-                    </option>
-                @endforeach
-            </select>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Khách hàng</label>
+                <select name="customer_id" class="form-control mb-3">
+                    <option value="">-- Không có khách hàng --</option>
+                    @foreach ($customers as $customer)
+                        <option value="{{ $customer->id }}">
+                            {{ $customer->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
             {{-- DỊCH VỤ --}}
             <div class="mb-3">

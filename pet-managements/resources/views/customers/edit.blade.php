@@ -70,10 +70,42 @@ h4{
     @csrf
     @method('PUT')
 
-    <input type="text" name="name" value="{{ $customer->name }}" class="form-control mb-2" required>
-    <input type="text" name="phone" value="{{ $customer->phone }}" class="form-control mb-2">
-    <input type="email" name="email" value="{{ $customer->email }}" class="form-control mb-2">
-    <input type="text" name="address" value="{{ $customer->address }}" class="form-control mb-2">
+    <div class="mb-3">
+    <label class="fw-bold">Tên khách hàng</label>
+    <input type="text"
+           name="name"
+           value="{{ $customer->name }}"
+           class="form-control"
+           placeholder="Nhập tên khách hàng"
+           required>
+</div>
+
+<div class="mb-3">
+    <label class="fw-bold">Số điện thoại</label>
+    <input type="text"
+           name="phone"
+           value="{{ $customer->phone }}"
+           class="form-control"
+           placeholder="Nhập số điện thoại">
+</div>
+
+<div class="mb-3">
+    <label class="fw-bold">Email</label>
+    <input type="email"
+           name="email"
+           value="{{ $customer->email }}"
+           class="form-control"
+           placeholder="Nhập email">
+</div>
+
+<div class="mb-3">
+    <label class="fw-bold">Địa chỉ</label>
+    <input type="text"
+           name="address"
+           value="{{ $customer->address }}"
+           class="form-control"
+           placeholder="Nhập địa chỉ">
+</div>
 
     <button class="btn btn-primary">Cập nhật</button>
     <a href="{{ route('customers.index') }}" class="btn btn-secondary">Quay lại</a>

@@ -10,7 +10,7 @@ class EmployeeController extends Controller
     // Hiển thị danh sách
     public function index()
     {
-        $employees = Employee::latest()->get(); // thêm sắp xếp
+        $employees = Employee::latest()->get(); 
         return view('employees.index', compact('employees'));
     }
 

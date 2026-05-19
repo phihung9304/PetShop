@@ -163,6 +163,7 @@
                         <th>Tên</th>
                         <th>Loài</th>
                         <th>Tuổi</th>
+                        <th>Cân nặng</th>
                         <th>Chủ sở hữu</th>
                         <th>Dịch vụ</th>
                         <th>Hành động</th>
@@ -176,6 +177,7 @@
                             <td>{{ $pet->name }}</td>
                             <td>{{ $pet->species }}</td>
                             <td>{{ $pet->age }}</td>
+                            <td>{{ $pet->weight }}</td>
                             <td>{{ $pet->customer->name ?? '---' }}</td>
                             <td class="services-col">
                                 @if ($pet->services->count())
@@ -199,9 +201,10 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="btn btn-sm btn-danger" onclick="return confirm('Xóa?')">
-                                            Xóa
-                                        </button>
+                                        <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Bạn có chắc muốn xóa thú cưng này không?')">
+                                        Xóa
+                                    </button>
                                     </form>
                                 </div>
                             </td>

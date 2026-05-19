@@ -168,7 +168,8 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Bạn có chắc muốn xóa khách hàng này không?')">
                                         Xóa
                                     </button>
                                 </form>

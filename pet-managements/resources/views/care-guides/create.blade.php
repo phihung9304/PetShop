@@ -56,24 +56,39 @@
             @csrf
 
             <div class="mb-3">
-                <label>Loài</label>
-                <input type="text" name="species" class="form-control" required>
-            </div>
+    <label class="fw-bold">Loài</label>
+    <input type="text"
+           name="species"
+           class="form-control"
+           placeholder="Nhập loài (ví dụ: chó, mèo)"
+           required>
+</div>
 
-            <div class="mb-3">
-                <label>Giống</label>
-                <input type="text" name="breed" class="form-control">
-            </div>
+<div class="mb-3">
+    <label class="fw-bold">Giống</label>
+    <input type="text"
+           name="breed"
+           class="form-control"
+           placeholder="Nhập giống (ví dụ: Alaska, Poodle)">
+</div>
 
-            <div class="mb-3">
-                <label>Tiêu đề</label>
-                <input type="text" name="title" class="form-control" required>
-            </div>
+<div class="mb-3">
+    <label class="fw-bold">Tiêu đề</label>
+    <input type="text"
+           name="title"
+           class="form-control"
+           placeholder="Nhập tiêu đề"
+           required>
+</div>
 
-            <div class="mb-3">
-                <label>Nội dung</label>
-                <textarea name="content" class="form-control" rows="5" required></textarea>
-            </div>
+<div class="mb-3">
+    <label class="fw-bold">Nội dung</label>
+    <textarea name="content"
+              class="form-control"
+              rows="5"
+              placeholder="Nhập nội dung"
+              required></textarea>
+</div>
 
             <button class="btn btn-success">Lưu</button>
             <a href="{{ route('care-guides.index') }}" class="btn btn-secondary">Quay lại</a>

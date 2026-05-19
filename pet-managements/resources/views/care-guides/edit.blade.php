@@ -49,27 +49,42 @@ h4{ color:#7c5a3a; font-weight:700; }
     @method('PUT')
 
     <div class="mb-3">
-        <label>Loài</label>
-        <input type="text" name="species" class="form-control"
-               value="{{ $guide->species }}" required>
-    </div>
+    <label class="fw-bold">Loài</label>
+    <input type="text"
+           name="species"
+           class="form-control"
+           value="{{ $guide->species }}"
+           placeholder="Nhập loài (ví dụ: chó, mèo)"
+           required>
+</div>
 
-    <div class="mb-3">
-        <label>Giống</label>
-        <input type="text" name="breed" class="form-control"
-               value="{{ $guide->breed }}">
-    </div>
+<div class="mb-3">
+    <label class="fw-bold">Giống</label>
+    <input type="text"
+           name="breed"
+           class="form-control"
+           value="{{ $guide->breed }}"
+           placeholder="Nhập giống (ví dụ: Poodle, Alaska)">
+</div>
 
-    <div class="mb-3">
-        <label>Tiêu đề</label>
-        <input type="text" name="title" class="form-control"
-               value="{{ $guide->title }}" required>
-    </div>
+<div class="mb-3">
+    <label class="fw-bold">Tiêu đề</label>
+    <input type="text"
+           name="title"
+           class="form-control"
+           value="{{ $guide->title }}"
+           placeholder="Nhập tiêu đề"
+           required>
+</div>
 
-    <div class="mb-3">
-        <label>Nội dung</label>
-        <textarea name="content" class="form-control" rows="5" required>{{ $guide->content }}</textarea>
-    </div>
+<div class="mb-3">
+    <label class="fw-bold">Nội dung</label>
+    <textarea name="content"
+              class="form-control"
+              rows="5"
+              placeholder="Nhập nội dung"
+              required>{{ $guide->content }}</textarea>
+</div>
 
     <button class="btn btn-success">Cập nhật</button>
     <a href="{{ route('care-guides.index') }}" class="btn btn-secondary">Quay lại</a>

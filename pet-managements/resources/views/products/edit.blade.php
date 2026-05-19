@@ -32,6 +32,10 @@ h4{ color:#7c5a3a; font-weight:700; }
     border:none !important;
     color:#fff !important;
 }
+.btn-secondary:hover{
+    background:#7c5a3a !important;
+    transform: scale(1.05);
+}
 </style>
 
 <h4 class="mb-4">✏️ Sửa sản phẩm</h4>
@@ -41,25 +45,54 @@ h4{ color:#7c5a3a; font-weight:700; }
     @csrf
     @method('PUT')
 
-    <div class="mb-3">
-        <label>Tên sản phẩm</label>
-        <input type="text" name="name" value="{{ $product->name }}" class="form-control" required>
-    </div>
+<div class="mb-3">
+    <label class="fw-bold">Tên sản phẩm</label>
+    <input type="text"
+           name="name"
+           value="{{ $product->name }}"
+           class="form-control"
+           placeholder="Nhập tên sản phẩm"
+           required>
+</div>
 
-    <div class="mb-3">
-        <label>Giá</label>
-        <input type="number" step="0.01" name="price" value="{{ $product->price }}" class="form-control" required>
-    </div>
+<div class="mb-3">
+    <label class="fw-bold">Giá</label>
+    <input type="number"
+           step="0.01"
+           name="price"
+           value="{{ $product->price }}"
+           class="form-control"
+           placeholder="Nhập giá sản phẩm"
+           required>
+</div>
 
-    <div class="mb-3">
-        <label>Tồn kho</label>
-        <input type="number" name="stock" value="{{ $product->stock }}" class="form-control">
-    </div>
+<div class="mb-3">
+    <label class="fw-bold">Danh mục</label>
 
-    <div class="mb-3">
-        <label>Danh mục</label>
-        <input type="text" name="category" value="{{ $product->category }}" class="form-control">
-    </div>
+    <select name="category" class="form-control">
+        <option value="">-- Chọn danh mục --</option>
+
+        <option value="Thức ăn"
+            {{ $product->category == 'Thức ăn' ? 'selected' : '' }}>
+            Thức ăn
+        </option>
+
+        <option value="Phụ kiện"
+            {{ $product->category == 'Phụ kiện' ? 'selected' : '' }}>
+            Phụ kiện
+        </option>
+
+        <option value="Thuốc"
+            {{ $product->category == 'Thuốc' ? 'selected' : '' }}>
+            Thuốc
+        </option>
+
+        <option value="Đồ chơi"
+            {{ $product->category == 'Đồ chơi' ? 'selected' : '' }}>
+            Đồ chơi
+        </option>
+    </select>
+</div>
 
     <button class="btn btn-primary">Cập nhật</button>
     <a href="{{ route('products.index') }}" class="btn btn-secondary">Quay lại</a>

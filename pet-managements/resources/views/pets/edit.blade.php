@@ -48,23 +48,33 @@
     <form action="{{ route('pets.update', $pet->id) }}" method="POST">
         @csrf
         @method('PUT')
+        <div class="mb-3">
+            <label class="form-label fw-bold">Tên</label>
+            <input type="text" name="name" value="{{ $pet->name }}" class="form-control mb-2" required>
+        </div>
 
-        {{-- TÊN --}}
-        <input type="text" name="name" value="{{ $pet->name }}" class="form-control mb-2" required>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Loài</label>
+            <input type="text" name="species" value="{{ $pet->species }}" class="form-control mb-2" required>
+        </div>
 
-        {{-- LOÀI --}}
-        <input type="text" name="species" value="{{ $pet->species }}" class="form-control mb-2" required>
+        <div class="mb-3">
+            <label class="form-label fw-bold">Tuổi</label>
+            <input type="number" name="age" value="{{ $pet->age }}" class="form-control mb-2">
+        </div>
 
-        {{-- GIỐNG --}}
-        <input type="text" name="breed" value="{{ $pet->breed }}" class="form-control mb-2">
+        <div class="mb-3">
+            <label class="form-label fw-bold">Tuổi</label>
+            <input type="number" name="age" value="{{ $pet->age }}" class="form-control mb-2">
+        </div>
 
-        {{-- TUỔI --}}
-        <input type="number" name="age" value="{{ $pet->age }}" class="form-control mb-2">
+        <div class="mb-3">
+            <label class="form-label fw-bold">Cân nặng</label>
+            <input type="number" name="weight" value="{{ $pet->weight }}" class="form-control mb-2">
+        </div>
 
-        {{-- CÂN NẶNG --}}
-        <input type="number" step="0.1" name="weight" value="{{ $pet->weight }}" class="form-control mb-2">
-
-        {{-- KHÁCH HÀNG --}}
+        <div class="mb-3">
+            <label class="form-label fw-bold">Khách hàng</label>
         <select name="customer_id" class="form-control mb-3">
             <option value="">-- Không có khách hàng --</option>
 
@@ -74,8 +84,8 @@
                 </option>
             @endforeach
         </select>
+        </div>
 
-        {{-- DỊCH VỤ --}}
         <div class="mb-3">
             <label class="form-label fw-bold">Dịch vụ</label>
 

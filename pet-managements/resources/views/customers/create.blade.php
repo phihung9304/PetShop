@@ -69,10 +69,25 @@ h4{
 <form action="{{ route('customers.store') }}" method="POST">
     @csrf
 
-    <input type="text" name="name" placeholder="Tên" class="form-control mb-2" required>
-    <input type="text" name="phone" placeholder="SĐT" class="form-control mb-2">
-    <input type="email" name="email" placeholder="Email" class="form-control mb-2">
-    <input type="text" name="address" placeholder="Địa chỉ" class="form-control mb-2">
+    <div class="mb-3">
+    <label class="form-label fw-bold">Tên</label>
+    <input type="text" name="name" placeholder="Tên" class="form-control" required>
+</div>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Số điện thoại</label>
+    <input type="text" name="phone" placeholder="SĐT" class="form-control">
+</div>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Email</label>
+    <input type="email" name="email" placeholder="Email" class="form-control">
+</div>
+
+<div class="mb-3">
+    <label class="form-label fw-bold">Địa chỉ</label>
+    <input type="text" name="address" placeholder="Địa chỉ" class="form-control">
+</div>
 
     <button class="btn btn-success">Lưu</button>
     <a href="{{ route('customers.index') }}" class="btn btn-secondary">Quay lại</a>

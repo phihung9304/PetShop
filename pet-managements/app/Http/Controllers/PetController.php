@@ -12,8 +12,9 @@ class PetController extends Controller
     // 📋 Hiển thị danh sách
     public function index()
     {
-        $pets = Pet::with('customer')->get();
-        return view('pets.index', compact('pets'));
+$pets = Pet::with('customer')
+           ->orderBy('id', 'desc')
+           ->get();        return view('pets.index', compact('pets'));
     }
 
     // ➕ Form thêm

@@ -8,10 +8,13 @@ use App\Models\Inventory;
 
 class ProductController extends Controller
 {
-    // 📄 Danh sách
+    // 📄 Danh sách sản phẩm (kèm tồn kho)
     public function index()
     {
-        $products = Product::latest()->get();
+        $products = Product::with('inventories')
+            ->latest()
+            ->get();
+
         return view('products.index', compact('products'));
     }
 
@@ -21,41 +24,39 @@ class ProductController extends Controller
         return view('products.create');
     }
 
-    // 💾 Lưu
+    // 💾 Lưu sản phẩm + TẠO INVENTORY LUÔN
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required',
             'price' => 'required|numeric|max:99999999.99',
-            'category' => 'nullable'
+            'category' => 'nullable',
+            'quantity' => 'nullable|integer|min:0' // 👈 thêm tồn kho ban đầu
         ]);
 
         $product = Product::create($validated);
 
+        // 🔥 Tạo inventory mặc định
         Inventory::create([
             'product_id' => $product->id,
-            'quantity' => 0
+            'warehouse_name' => 'Kho chính',
+            'quantity' => $request->quantity ?? 0
         ]);
 
-        return redirect()->route('products.index')
+        return redirect()
+            ->route('products.index')
             ->with('success', 'Thêm sản phẩm thành công');
     }
 
-    // 👁 (không dùng cũng được)
-    public function show(string $id)
-    {
-        $product = Product::findOrFail($id);
-        return view('products.show', compact('product'));
-    }
-
-    // ✏️ Form sửa
+    // ✏️ Form sửa (chỉ sửa giá)
     public function edit(string $id)
     {
         $product = Product::findOrFail($id);
+
         return view('products.edit', compact('product'));
     }
 
-    // 🔄 Cập nhật
+    // 🔄 Cập nhật (chỉ price + category)
     public function update(Request $request, string $id)
     {
         $product = Product::findOrFail($id);
@@ -68,7 +69,8 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('products.index')
+        return redirect()
+            ->route('products.index')
             ->with('success', 'Cập nhật thành công');
     }
 
@@ -77,7 +79,8 @@ class ProductController extends Controller
     {
         Product::findOrFail($id)->delete();
 
-        return redirect()->route('products.index')
+        return redirect()
+            ->route('products.index')
             ->with('success', 'Xóa thành công');
     }
 }

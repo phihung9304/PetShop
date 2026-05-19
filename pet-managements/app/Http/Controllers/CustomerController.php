@@ -10,7 +10,7 @@ class CustomerController extends Controller
     // 📋 Danh sách
     public function index()
     {
-        $customers = Customer::all();
+        $customers = Customer::orderBy('id', 'desc')->get();
         return view('customers.index', compact('customers'));
     }
 
@@ -30,7 +30,7 @@ class CustomerController extends Controller
         Customer::create($request->all());
 
         return redirect()->route('customers.index')
-                         ->with('success', 'Thêm thành công!');
+            ->with('success', 'Thêm thành công!');
     }
 
     // ✏️ Form sửa
@@ -51,7 +51,7 @@ class CustomerController extends Controller
         $customer->update($request->all());
 
         return redirect()->route('customers.index')
-                         ->with('success', 'Cập nhật thành công!');
+            ->with('success', 'Cập nhật thành công!');
     }
 
     // 🗑️ Xóa
@@ -60,6 +60,6 @@ class CustomerController extends Controller
         Customer::destroy($id);
 
         return redirect()->route('customers.index')
-                         ->with('success', 'Xóa thành công!');
+            ->with('success', 'Xóa thành công!');
     }
 }

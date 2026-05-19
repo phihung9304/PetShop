@@ -71,17 +71,17 @@ h4{
 
     <div class="mb-3">
         <label class="fw-bold">Tên dịch vụ</label>
-        <input type="text" name="name" class="form-control" required>
+        <input type="text" name="name" class="form-control" placeholder="Tên dịch vụ"required>
     </div>
 
     <div class="mb-3">
         <label class="fw-bold">Giá</label>
-        <input type="number" name="price" class="form-control" required>
+        <input type="number" name="price" class="form-control" placeholder="Giá dịch vụ" required>
     </div>
 
     <div class="mb-3">
         <label class="fw-bold">Mô tả</label>
-        <textarea name="description" class="form-control" rows="4"></textarea>
+        <textarea name="description" class="form-control"placeholder="Mô tả dịch vụ" rows="4"></textarea>
     </div>
 
     <button class="btn btn-success">Lưu</button>

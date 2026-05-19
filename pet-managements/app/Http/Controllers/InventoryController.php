@@ -8,50 +8,72 @@ use App\Models\Product;
 
 class InventoryController extends Controller
 {
-    // 📦 Xem danh sách kho
+    // 📄 LIST ALL INVENTORY
     public function index()
     {
-        $inventories = Inventory::with('product')->get();
+        $inventories = Inventory::with('product')->latest()->get();
 
-        return view('inventory.index', compact('inventories'));
+        return view('inventories.index', compact('inventories'));
     }
 
-    // ➕ Nhập kho
-    public function import(Request $request)
+    // ➕ FORM CREATE
+    public function create()
+    {
+        $products = Product::all();
+        return view('inventories.create', compact('products'));
+    }
+
+    // 💾 STORE
+    public function store(Request $request)
     {
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1'
+            'warehouse_name' => 'required',
+            'quantity' => 'required|integer|min:0',
         ]);
 
-        $inventory = Inventory::firstOrCreate(
-            ['product_id' => $request->product_id],
-            ['quantity' => 0]
-        );
+        Inventory::create($request->all());
 
-        $inventory->quantity += $request->quantity;
-        $inventory->save();
-
-        return back()->with('success', 'Nhập kho thành công');
+        return redirect()
+            ->route('inventories.index')
+            ->with('success', 'Thêm kho thành công');
     }
 
-    // ➖ Xuất kho
-    public function export(Request $request)
+    // ✏️ EDIT
+    public function edit($id)
     {
+        $inventory = Inventory::findOrFail($id);
+        $products = Product::all();
+
+        return view('inventories.edit', compact('inventory', 'products'));
+    }
+
+    // 🔄 UPDATE
+    public function update(Request $request, $id)
+    {
+        $inventory = Inventory::findOrFail($id);
+
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'quantity' => 'required|integer|min:1'
+            'warehouse_name' => 'required',
+            'quantity' => 'required|integer|min:0',
         ]);
 
-        $inventory = Inventory::where('product_id', $request->product_id)->first();
+        $inventory->update($request->all());
 
-        if (!$inventory || $inventory->quantity < $request->quantity) {
-            return back()->with('error', 'Không đủ hàng trong kho');
-        }
+        return redirect()
+            ->route('inventories.index')
+            ->with('success', 'Cập nhật kho thành công');
+    }
 
-        $inventory->quantity -= $request->quantity;
-        $inventory->save();
+    // ❌ DELETE
+    public function destroy($id)
+    {
+        $inventory = Inventory::findOrFail($id);
+        $inventory->delete();
 
-        return back()->with('success', 'Xuất kho thành công');
+        return redirect()
+            ->route('inventories.index')
+            ->with('success', 'Xóa kho thành công');
     }
 }

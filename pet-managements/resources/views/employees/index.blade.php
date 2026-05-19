@@ -43,6 +43,8 @@
             border: 1px solid #e0d6cc;
             word-break: break-word;
             text-align: center !important;
+            white-space: nowrap;
+
         }
 
         .table tbody tr:nth-child(odd) {
@@ -138,7 +140,8 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="btn btn-danger btn-sm">
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Bạn có chắc muốn xóa nhân viên này không?')">
                                         Xóa
                                     </button>
                                 </form>

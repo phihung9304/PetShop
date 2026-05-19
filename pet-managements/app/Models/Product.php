@@ -15,8 +15,14 @@ class Product extends Model
         'category'
     ];
 
-    public function inventory()
+    // 1 sản phẩm có nhiều kho
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
+
+    public function getTotalStockAttribute()
 {
-    return $this->hasOne(Inventory::class);
+    return $this->inventories->sum('quantity');
 }
 }
