@@ -10,11 +10,37 @@ class CareGuideController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $guides = CareGuide::latest()->get();
-        return view('care-guides.index', compact('guides'));
+    public function index(Request $request)
+{
+    $query = CareGuide::query();
+
+    // SEARCH (title, species)
+    if ($request->search) {
+
+        $search = $request->search;
+
+        $query->where(function ($q) use ($search) {
+
+            $q->where('title', 'like', '%' . $search . '%')
+              ->orWhere('species', 'like', '%' . $search . '%');
+
+        });
     }
+
+    // FILTER SPECIES
+    if ($request->species) {
+
+        $query->where('species', $request->species);
+
+    }
+
+    $guides = $query
+        ->latest()
+        ->paginate(5)
+        ->withQueryString();
+
+    return view('care-guides.index', compact('guides'));
+}
 
     /**
      * Show the form for creating a new resource.

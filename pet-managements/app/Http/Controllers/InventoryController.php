@@ -9,12 +9,42 @@ use App\Models\Product;
 class InventoryController extends Controller
 {
     // 📄 LIST ALL INVENTORY
-    public function index()
-    {
-        $inventories = Inventory::with('product')->latest()->get();
+    public function index(Request $request)
+{
+    $query = Inventory::with('product');
 
-        return view('inventories.index', compact('inventories'));
+    // SEARCH
+    if ($request->search) {
+
+        $search = $request->search;
+
+        $query->where(function ($q) use ($search) {
+
+            $q->where('warehouse_name', 'like', '%' . $search . '%')
+
+              ->orWhereHas('product', function ($product) use ($search) {
+
+                    $product->where('name', 'like', '%' . $search . '%');
+
+              });
+
+        });
     }
+
+    // FILTER KHO
+    if ($request->warehouse_name) {
+
+        $query->where('warehouse_name', $request->warehouse_name);
+
+    }
+
+    $inventories = $query
+        ->latest()
+        ->paginate(5)
+        ->withQueryString();
+
+    return view('inventories.index', compact('inventories'));
+}
 
     // ➕ FORM CREATE
     public function create()

@@ -81,7 +81,7 @@ h4{
 
     <div class="mb-3">
         <label class="fw-bold">Mô tả</label>
-        <textarea name="description" class="form-control"placeholder="Mô tả dịch vụ" rows="4"></textarea>
+        <textarea name="description" class="form-control"placeholder="Mô tả dịch vụ" rows="4" required></textarea>
     </div>
 
     <button class="btn btn-success">Lưu</button>

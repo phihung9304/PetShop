@@ -7,11 +7,35 @@ use App\Models\Service;
 
 class ServiceController extends Controller
 {
-    public function index()
-    {
-        $services = Service::orderBy('id', 'desc')->get();
-        return view('services.index', compact('services'));
+    public function index(Request $request)
+{
+    $query = Service::query();
+
+    if ($request->search) {
+        $query->where('name', 'like', '%' . $request->search . '%');
     }
+
+    if ($request->filled('price_range')) {
+
+        if ($request->price_range == 'low') {
+            $query->where('price', '<', 100000);
+        }
+
+        if ($request->price_range == 'mid') {
+            $query->whereBetween('price', [100000, 300000]);
+        }
+
+        if ($request->price_range == 'high') {
+            $query->where('price', '>', 300000);
+        }
+    }
+
+    $services = $query->latest()
+        ->paginate(5)
+        ->withQueryString();
+
+    return view('services.index', compact('services'));
+}
 
     public function create()
     {

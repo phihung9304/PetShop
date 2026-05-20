@@ -9,6 +9,10 @@ use App\Http\Controllers\CareGuideController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\RevenueController;
+
+
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -25,3 +29,7 @@ Route::resource('employees', EmployeeController::class);
 Route::resource('products', ProductController::class);
 
 Route::resource('inventories', InventoryController::class);
+
+Route::resource('invoices', InvoiceController::class);
+
+Route::get('/revenue', [RevenueController::class, 'index']);

@@ -76,17 +76,17 @@ h4{
 
 <div class="mb-3">
     <label class="form-label fw-bold">Số điện thoại</label>
-    <input type="text" name="phone" placeholder="SĐT" class="form-control">
+    <input type="text" name="phone" placeholder="SĐT" class="form-control" required>
 </div>
 
 <div class="mb-3">
     <label class="form-label fw-bold">Email</label>
-    <input type="email" name="email" placeholder="Email" class="form-control">
+    <input type="email" name="email" placeholder="Email" class="form-control" required>
 </div>
 
 <div class="mb-3">
     <label class="form-label fw-bold">Địa chỉ</label>
-    <input type="text" name="address" placeholder="Địa chỉ" class="form-control">
+    <input type="text" name="address" placeholder="Địa chỉ" class="form-control" required>
 </div>
 
     <button class="btn btn-success">Lưu</button>

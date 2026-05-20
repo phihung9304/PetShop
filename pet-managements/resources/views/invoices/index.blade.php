@@ -38,7 +38,7 @@
         gap: 10px;
         flex-wrap: wrap;
         align-items: center;
-        background: #fff;
+        background: var(--white);
         padding: 14px;
         border-radius: 12px;
         margin-bottom: 18px;
@@ -52,18 +52,8 @@
         border-radius: 8px;
         border: 1px solid #ddd;
         outline: none;
-        height: 42px;
+        min-width: 150px;
         background: #fff;
-        color: #333;
-    }
-
-    .filter-bar input {
-        min-width: 55%;
-    }
-
-    .filter-bar select {
-        min-width: 180px;
-        cursor: pointer;
     }
 
     .filter-bar input:focus,
@@ -75,8 +65,7 @@
         background: var(--primary);
         color: #fff;
         border: none;
-        padding: 0 16px;
-        height: 42px;
+        padding: 8px 14px;
         border-radius: 8px;
         cursor: pointer;
         transition: 0.2s;
@@ -86,17 +75,13 @@
         background: var(--primary-hover);
     }
 
-    /* CREATE BUTTON */
     .btn-create {
         background: var(--primary);
         color: #fff;
-        padding: 9px 14px;
+        padding: 8px 14px;
         border-radius: 8px;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 42px;
+        display: inline-block;
         transition: 0.2s;
         font-weight: 600;
     }
@@ -106,18 +91,13 @@
         color: #fff;
     }
 
-    /* RESET BUTTON */
     .reset-btn {
-        padding: 0 14px;
+        padding: 8px 12px;
         background: #eee;
         border-radius: 8px;
         text-decoration: none;
         color: #333;
         transition: 0.2s;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 42px;
     }
 
     .reset-btn:hover {
@@ -152,18 +132,15 @@
         padding: 12px;
         font-weight: 600;
         border: 1px solid var(--border);
-        text-align: center;
-        vertical-align: middle;
     }
 
     .table th,
     .table td {
-        padding: 12px !important;
-        vertical-align: middle;
+        padding: 12px;
         border: 1px solid var(--border);
+        vertical-align: middle;
         text-align: center;
         overflow-wrap: break-word;
-        white-space: nowrap;
     }
 
     .table tbody tr:nth-child(even) {
@@ -175,18 +152,26 @@
     }
 
     /* =========================
-        BUTTONS
+        ACTION BUTTONS
     ========================= */
-    .btn {
-        border-radius: 8px !important;
+    .action-btns {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
     }
 
-    .btn-primary {
+    .action-btns .btn {
+        border-radius: 8px !important;
+        font-size: 13px;
+    }
+
+    .btn-success {
         background: #a67c52 !important;
         border: none !important;
+        color: #fff !important;
     }
 
-    .btn-primary:hover {
+    .btn-success:hover {
         background: var(--primary) !important;
     }
 
@@ -208,6 +193,19 @@
 
     .btn-danger:hover {
         opacity: 0.9;
+    }
+
+    /* =========================
+        STATUS
+    ========================= */
+    .status-completed {
+        color: #2e7d32;
+        font-weight: bold;
+    }
+
+    .status-cancelled {
+        color: #c62828;
+        font-weight: bold;
     }
 
     /* =========================
@@ -260,80 +258,82 @@
             text-align: center;
         }
 
-        .table {
-            table-layout: auto;
-        }
-
-        .btn {
-            width: 100%;
-            margin-bottom: 5px;
+        .action-btns {
+            flex-direction: column;
         }
     }
 </style>
 
-<h4 class="mb-4">👤 Quản lý Nhân viên</h4>
+<h4 class="mb-4">🧾 Quản lý hóa đơn</h4>
 
 @if (session('success'))
-
     <div class="alert alert-success alert-dismissible fade show" role="alert">
 
         {{ session('success') }}
 
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert">
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 
     </div>
-
 @endif
 
 <!-- FILTER -->
 <form method="GET" class="filter-bar">
 
-    <a href="{{ route('employees.create') }}" class="btn-create">
-        ➕ Thêm nhân viên
+    <a href="{{ route('invoices.create') }}" class="btn-create">
+        ➕ Thêm hóa đơn
     </a>
 
     <input
         type="text"
         name="search"
-        placeholder="🔎 Tìm tên, email, SĐT..."
+        placeholder="🔎 Tìm tên hoặc ID..."
         value="{{ request('search') }}"
     >
 
-    <select name="position">
+    <select name="payment_method">
+        <option value="">💳 Payment</option>
 
-    <option value="">👔 Tất cả chức vụ</option>
+        <option value="cash"
+            {{ request('payment_method') == 'cash' ? 'selected' : '' }}>
+            Cash
+        </option>
 
-    <option value="Quản lý"
-        {{ request('position') == 'Quản lý' ? 'selected' : '' }}>
-        Quản lý
-    </option>
+        <option value="momo"
+            {{ request('payment_method') == 'momo' ? 'selected' : '' }}>
+            Momo
+        </option>
 
-    <option value="Nhân viên"
-        {{ request('position') == 'Nhân viên' ? 'selected' : '' }}>
-        Nhân viên
-    </option>
+        <option value="banking"
+            {{ request('payment_method') == 'banking' ? 'selected' : '' }}>
+            Transfer
+        </option>
+    </select>
 
-    <option value="Bác sĩ thú y"
-        {{ request('position') == 'Bác sĩ thú y' ? 'selected' : '' }}>
-        Bác sĩ thú y
-    </option>
+    <select name="status">
 
-    <option value="Thu ngân"
-        {{ request('position') == 'Thu ngân' ? 'selected' : '' }}>
-        Thu ngân
-    </option>
+        <option value="">📌 Status</option>
 
-</select>
+        <option value="completed"
+            {{ request('status') == 'completed' ? 'selected' : '' }}>
+            Completed
+        </option>
+
+        <option value="cancelled"
+            {{ request('status') == 'cancelled' ? 'selected' : '' }}>
+            Cancelled
+        </option>
+
+    </select>
+
+    <input type="date" name="from" value="{{ request('from') }}">
+
+    <input type="date" name="to" value="{{ request('to') }}">
 
     <button type="submit">
-        Tìm
+        Lọc
     </button>
 
-    <a href="{{ route('employees.index') }}" class="reset-btn">
+    <a href="{{ route('invoices.index') }}" class="reset-btn">
         Reset
     </a>
 
@@ -347,60 +347,108 @@
         <table class="table align-middle">
 
             <thead>
-
                 <tr>
                     <th>ID</th>
-                    <th>Tên</th>
-                    <th>Email</th>
-                    <th>SĐT</th>
-                    <th>Chức vụ</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th>Thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th>Ngày tạo</th>
                     <th>Hành động</th>
                 </tr>
-
             </thead>
 
             <tbody>
 
-                @forelse ($employees as $employee)
+                @forelse ($invoices as $invoice)
 
                     <tr>
 
-                        <td>{{ $employee->id }}</td>
+                        <td>{{ $invoice->id }}</td>
 
-                        <td>{{ $employee->name }}</td>
+                        <td>{{ $invoice->product_name }}</td>
 
-                        <td>{{ $employee->email }}</td>
+                        <td>
+                            {{ number_format($invoice->price) }} VNĐ
+                        </td>
 
-                        <td>{{ $employee->phone }}</td>
+                        <td>{{ $invoice->quantity }}</td>
 
-                        <td>{{ $employee->position }}</td>
+                        <td>
+                            {{ number_format($invoice->total_amount) }} VNĐ
+                        </td>
 
                         <td>
 
-                            <a
-                                href="{{ route('employees.edit', $employee->id) }}"
-                                class="btn btn-warning btn-sm"
-                            >
-                                Sửa
-                            </a>
+                            @if ($invoice->payment_method == 'cash')
 
-                            <form
-                                action="{{ route('employees.destroy', $employee->id) }}"
-                                method="POST"
-                                style="display:inline;"
-                            >
+                                Tiền mặt
 
-                                @csrf
-                                @method('DELETE')
+                            @elseif ($invoice->payment_method == 'momo')
 
-                                <button
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Bạn có chắc muốn xóa nhân viên này không?')"
+                                Momo
+
+                            @elseif ($invoice->payment_method == 'banking')
+
+                                Chuyển khoản
+
+                            @endif
+
+                        </td>
+
+                        <td>
+
+                            @if ($invoice->status == 'completed')
+
+                                <span class="status-completed">
+                                    Hoàn thành
+                                </span>
+
+                            @else
+
+                                <span class="status-cancelled">
+                                    Đã hủy
+                                </span>
+
+                            @endif
+
+                        </td>
+
+                        <td>
+                            {{ $invoice->created_at->format('d/m/Y H:i') }}
+                        </td>
+
+                        <td>
+
+                            <div class="action-btns">
+
+                                <a
+                                    href="{{ route('invoices.edit', $invoice->id) }}"
+                                    class="btn btn-sm btn-warning"
                                 >
-                                    Xóa
-                                </button>
+                                    Sửa
+                                </a>
 
-                            </form>
+                                <form
+                                    action="{{ route('invoices.destroy', $invoice->id) }}"
+                                    method="POST"
+                                >
+
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Bạn có chắc muốn xóa hóa đơn này không?')"
+                                    >
+                                        Xóa
+                                    </button>
+
+                                </form>
+
+                            </div>
 
                         </td>
 
@@ -410,8 +458,8 @@
 
                     <tr>
 
-                        <td colspan="6" class="text-center py-4">
-                            Chưa có nhân viên nào
+                        <td colspan="9" class="text-center py-4">
+                            Chưa có hóa đơn nào
                         </td>
 
                     </tr>
@@ -429,7 +477,7 @@
 <!-- PAGINATION -->
 <div class="d-flex justify-content-center mt-3">
 
-    {{ $employees->links() }}
+    {{ $invoices->links() }}
 
 </div>
 

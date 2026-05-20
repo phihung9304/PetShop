@@ -84,7 +84,7 @@ h4{
 
     <div class="mb-3">
         <label class="fw-bold">Mô tả</label>
-        <textarea name="description" class="form-control" rows="4">{{ $service->description }}</textarea>
+        <textarea name="description" class="form-control" rows="4" required>{{ $service->description }}</textarea>
     </div>
 
     <button class="btn btn-primary">Cập nhật</button>

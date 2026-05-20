@@ -9,14 +9,33 @@ use App\Models\Inventory;
 class ProductController extends Controller
 {
     // 📄 Danh sách sản phẩm (kèm tồn kho)
-    public function index()
-    {
-        $products = Product::with('inventories')
-            ->latest()
-            ->get();
+    public function index(Request $request)
+{
+    $query = Product::with('inventories');
 
-        return view('products.index', compact('products'));
+    // SEARCH
+    if ($request->search) {
+
+        $search = $request->search;
+
+        $query->where('name', 'like', '%' . $search . '%');
+
     }
+
+    // FILTER CATEGORY
+    if ($request->category) {
+
+        $query->where('category', $request->category);
+
+    }
+
+    $products = $query
+        ->latest()
+        ->paginate(5)
+        ->withQueryString();
+
+    return view('products.index', compact('products'));
+}
 
     // ➕ Form thêm
     public function create()

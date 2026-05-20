@@ -10,12 +10,50 @@ use App\Models\Service;
 class PetController extends Controller
 {
     // 📋 Hiển thị danh sách
-    public function index()
-    {
-$pets = Pet::with('customer')
-           ->orderBy('id', 'desc')
-           ->get();        return view('pets.index', compact('pets'));
+    public function index(Request $request)
+{
+    $query = Pet::with(['customer', 'services'])
+        ->orderBy('id', 'desc');
+
+    // 🔎 Search theo tên pet hoặc tên chủ
+    if ($request->filled('search')) {
+        $search = $request->search;
+
+        $query->where('name', 'like', "%$search%")
+              ->orWhereHas('customer', function ($q) use ($search) {
+                  $q->where('name', 'like', "%$search%");
+              });
     }
+
+    // 🐾 Filter theo loài
+    if ($request->filled('species')) {
+        $query->where('species', $request->species);
+    }
+
+        if ($request->filled('age_range')) {
+
+        if ($request->age_range == 'baby') {
+            $query->where('age', '<=', 1);
+        }
+
+        if ($request->age_range == 'young') {
+            $query->whereBetween('age', [2, 5]);
+        }
+
+        if ($request->age_range == 'adult') {
+            $query->whereBetween('age', [6, 10]);
+        }
+
+        if ($request->age_range == 'old') {
+            $query->where('age', '>', 10);
+        }
+    }
+
+    // 📄 PHÂN TRANG GIỐNG INVOICES
+    $pets = $query->latest()->paginate(5)->withQueryString();
+
+    return view('pets.index', compact('pets'));
+}
 
     // ➕ Form thêm
     public function create()

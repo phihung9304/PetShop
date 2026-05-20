@@ -86,7 +86,7 @@ h4{
            name="phone"
            value="{{ $customer->phone }}"
            class="form-control"
-           placeholder="Nhập số điện thoại">
+           placeholder="Nhập số điện thoại" required>
 </div>
 
 <div class="mb-3">
@@ -95,7 +95,7 @@ h4{
            name="email"
            value="{{ $customer->email }}"
            class="form-control"
-           placeholder="Nhập email">
+           placeholder="Nhập email" required>
 </div>
 
 <div class="mb-3">
@@ -104,7 +104,7 @@ h4{
            name="address"
            value="{{ $customer->address }}"
            class="form-control"
-           placeholder="Nhập địa chỉ">
+           placeholder="Nhập địa chỉ" required>
 </div>
 
     <button class="btn btn-primary">Cập nhật</button>

@@ -1,74 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        body {
-            background: #faf6f2;
-            font-family: Arial, sans-serif;
-        }
+<style>
+    body {
+        background: #faf6f2;
+        font-family: Arial, sans-serif;
+    }
 
-        h4 {
-            color: #7c5a3a;
-            font-weight: 700;
-        }
+    h4 {
+        color: #7c5a3a;
+        font-weight: 700;
+    }
 
-        /* FORM BOX */
-        .form-box {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e0d6cc;
-            box-shadow: 0 8px 20px rgba(124, 90, 58, 0.08);
-        }
+    .form-box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #e0d6cc;
+        box-shadow: 0 8px 20px rgba(124, 90, 58, 0.08);
+    }
 
-        /* INPUT */
-        .form-control {
-            border-radius: 8px;
-        }
+    .form-control {
+        border-radius: 8px;
+    }
 
-        .form-control:focus {
-            border-color: #a67c52;
-            box-shadow: 0 0 0 2px rgba(166, 124, 82, 0.2);
-        }
+    .form-control:focus {
+        border-color: #a67c52;
+        box-shadow: 0 0 0 2px rgba(166, 124, 82, 0.2);
+    }
 
-        /* SERVICE BOX */
-        .service-box {
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 8px;
-            max-height: 200px;
-            overflow: auto;
-            background: #fafafa;
-        }
+    .service-box {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 8px;
+        max-height: 120px;
+        overflow-y: auto;
+        background: #fafafa;
+    }
 
-        /* BUTTON */
-        .btn {
-            border-radius: 8px !important;
-            transition: all 0.2s ease;
-        }
+    .btn {
+        border-radius: 8px !important;
+    }
 
-        .btn-success {
-            background: #a67c52 !important;
-            border: none !important;
-            color: #fff !important;
-        }
+    .btn-success {
+        background: #a67c52 !important;
+        border: none !important;
+        color: #fff !important;
+    }
 
-        .btn-success:hover {
-            background: #7c5a3a !important;
-            transform: scale(1.05);
-        }
+    .btn-success:hover {
+        background: #7c5a3a !important;
+    }
 
-        .btn-secondary {
-            background: #d2b48c !important;
-            border: none !important;
-            color: #fff !important;
-        }
+    .btn-secondary {
+        background: #d2b48c !important;
+        border: none !important;
+        color: #fff !important;
+    }
 
-        .btn-secondary:hover {
-            background: #7c5a3a !important;
-            transform: scale(1.05);
-        }
-    </style>
+    .btn-secondary:hover {
+        background: #7c5a3a !important;
+    }
+</style>
 
     <h4 class="mb-4">➕ Thêm Thú cưng</h4>
 
@@ -77,22 +70,32 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label fw-bold">Tên</label>
-                <input type="text" name="name" placeholder="Tên" class="form-control mb-2" required>
+                <input type="text" name="name" placeholder="Tên" class="form-control mb-2"required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label fw-bold">Loài</label>
-                <input type="text" name="species" placeholder="Loài" class="form-control mb-2" required>
-            </div>
 
+                <select name="species" class="form-control mb-2" required>
+                    <option value="">-- Chọn loài --</option>
+                    <option value="Chó">Chó</option>
+                    <option value="Mèo">Mèo</option>
+                    <option value="Hamster">Hamster</option>
+                    <option value="Thỏ">Thỏ</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Giống</label>
+                <input type="text" name="breed" placeholder="Giống" class="form-control mb-2" required>
+            </div>
             <div class="mb-3">
                 <label class="form-label fw-bold">Tuổi</label>
-                <input type="number" name="age" placeholder="Tuổi" class="form-control mb-2">
+                <input type="number" name="age" placeholder="Tuổi" class="form-control mb-2" required>
             </div>
 
             <div class="mb-3">
                 <label class="form-label fw-bold">Cân nặng</label>
-                <input type="number" name="weight" placeholder="Cân nặng" class="form-control mb-2">
+                <input type="number" name="weight" placeholder="Cân nặng" class="form-control mb-2" required>
             </div>
 
             <div class="mb-3">

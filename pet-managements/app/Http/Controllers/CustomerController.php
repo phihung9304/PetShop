@@ -8,9 +8,28 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     // 📋 Danh sách
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::orderBy('id', 'desc')->get();
+        $query = Customer::query();
+
+        // SEARCH
+        if ($request->search) {
+
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%');
+            });
+        }
+
+        $customers = $query
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
+
         return view('customers.index', compact('customers'));
     }
 

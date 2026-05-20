@@ -22,7 +22,11 @@ class Product extends Model
     }
 
     public function getTotalStockAttribute()
-{
-    return $this->inventories->sum('quantity');
-}
+    {
+        return $this->inventories->sum('quantity');
+    }
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

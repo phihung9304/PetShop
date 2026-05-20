@@ -69,7 +69,7 @@ h4{ color:#7c5a3a; font-weight:700; }
 <div class="mb-3">
     <label class="fw-bold">Danh mục</label>
 
-    <select name="category" class="form-control">
+    <select name="category" class="form-control" required>
         <option value="">-- Chọn danh mục --</option>
 
         <option value="Thức ăn"

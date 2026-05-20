@@ -87,15 +87,14 @@ input{
     <input type="text"
            name="phone"
            class="form-control"
-           placeholder="Nhập số điện thoại">
+           placeholder="Nhập số điện thoại" required >
 </div>
 
 <div class="mb-3">
     <label class="fw-bold">Chức vụ</label>
 
-    <select name="position" class="form-control">
+    <select name="position" class="form-control" required>
         <option value="">-- Chọn chức vụ --</option>
-
         <option value="Quản lý">Quản lý</option>
         <option value="Nhân viên">Nhân viên</option>
         <option value="Bác sĩ thú y">Bác sĩ thú y</option>

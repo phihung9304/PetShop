@@ -50,40 +50,52 @@
         @method('PUT')
         <div class="mb-3">
             <label class="form-label fw-bold">Tên</label>
-            <input type="text" name="name" value="{{ $pet->name }}" class="form-control mb-2" required>
+            <input type="text" name="name" value="{{ $pet->name }}" class="form-control mb-2"
+                placeholder="Nhập tên thú cưng" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label fw-bold">Loài</label>
-            <input type="text" name="species" value="{{ $pet->species }}" class="form-control mb-2" required>
+
+            <select name="species" class="form-control mb-2" required>
+                <option value="">-- Chọn loài --</option>
+
+                <option value="Chó" {{ $pet->species == 'Chó' ? 'selected' : '' }}>Chó</option>
+                <option value="Mèo" {{ $pet->species == 'Mèo' ? 'selected' : '' }}>Mèo</option>
+                <option value="Hamster" {{ $pet->species == 'Hamster' ? 'selected' : '' }}>Hamster</option>
+                <option value="Thỏ" {{ $pet->species == 'Thỏ' ? 'selected' : '' }}>Thỏ</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Giống</label>
+            <input type="text" name="breed" value="{{ $pet->breed }}" class="form-control mb-2"
+                placeholder="Nhập giống (ví dụ: Poodle, Pug...)" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label fw-bold">Tuổi</label>
-            <input type="number" name="age" value="{{ $pet->age }}" class="form-control mb-2">
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label fw-bold">Tuổi</label>
-            <input type="number" name="age" value="{{ $pet->age }}" class="form-control mb-2">
+            <input type="number" name="age" value="{{ $pet->age }}" class="form-control mb-2"
+                placeholder="Nhập tuổi (ví dụ: 2, 3, 5...)" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label fw-bold">Cân nặng</label>
-            <input type="number" name="weight" value="{{ $pet->weight }}" class="form-control mb-2">
+            <input type="number" name="weight" value="{{ $pet->weight }}" class="form-control mb-2"
+                placeholder="Nhập cân nặng (kg)" required>
         </div>
 
         <div class="mb-3">
             <label class="form-label fw-bold">Khách hàng</label>
-        <select name="customer_id" class="form-control mb-3">
-            <option value="">-- Không có khách hàng --</option>
+            <select name="customer_id" class="form-control mb-3">
+                <option value="">-- Không có khách hàng --</option>
 
-            @foreach ($customers as $customer)
-                <option value="{{ $customer->id }}" {{ $pet->customer_id == $customer->id ? 'selected' : '' }}>
-                    {{ $customer->name }}
-                </option>
-            @endforeach
-        </select>
+                @foreach ($customers as $customer)
+                    <option value="{{ $customer->id }}" {{ $pet->customer_id == $customer->id ? 'selected' : '' }}>
+                        {{ $customer->name }}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="mb-3">

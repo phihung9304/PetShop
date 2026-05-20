@@ -8,11 +8,38 @@ use App\Models\Employee;
 class EmployeeController extends Controller
 {
     // Hiển thị danh sách
-    public function index()
-    {
-        $employees = Employee::latest()->get(); 
-        return view('employees.index', compact('employees'));
+    public function index(Request $request)
+{
+    $query = Employee::query();
+
+    // SEARCH
+    if ($request->search) {
+
+        $search = $request->search;
+
+        $query->where(function ($q) use ($search) {
+
+            $q->where('name', 'like', '%' . $search . '%')
+              ->orWhere('email', 'like', '%' . $search . '%')
+              ->orWhere('phone', 'like', '%' . $search . '%');
+
+        });
     }
+
+    // FILTER POSITION
+    if ($request->position) {
+
+        $query->where('position', $request->position);
+
+    }
+
+    $employees = $query
+        ->latest()
+        ->paginate(5)
+        ->withQueryString();
+
+    return view('employees.index', compact('employees'));
+}
 
     // Form thêm
     public function create()
