@@ -18,7 +18,6 @@ class Invoice extends Model
         'updated_at',
     ];
 
-    // Relationship với Product
     public function product()
     {
         return $this->belongsTo(Product::class);

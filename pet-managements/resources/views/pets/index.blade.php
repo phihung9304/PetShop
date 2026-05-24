@@ -223,7 +223,6 @@
         </div>
     @endif
 
-    <!-- FILTER -->
     <form method="GET" class="filter-bar">
 
         <a href="{{ route('pets.create') }}" class="btn-create">
@@ -264,7 +263,6 @@
 
     </form>
 
-    <!-- TABLE -->
     <div class="table-wrapper">
 
         <table class="table align-middle">
@@ -292,7 +290,7 @@
                         <td>{{ $pet->species }}</td>
                         <td>{{ $pet->breed }}</td>
                         <td>{{ $pet->age }}</td>
-                        <td>{{ $pet->weight }}</td>
+                        <td>{{ $pet->weight }}kg</td>
                         <td>{{ $pet->customer->name ?? '---' }}</td>
 
                         <td class="services-col">

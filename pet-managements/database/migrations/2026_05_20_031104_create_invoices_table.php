@@ -15,24 +15,18 @@ return new class extends Migration
 
             $table->id();
 
-            // Liên kết tới products.id
             $table->foreignId('product_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
-            // Snapshot dữ liệu sản phẩm
             $table->string('product_name');
 
-            // Giá tại thời điểm mua
             $table->decimal('price', 10, 2);
 
-            // Số lượng mua
             $table->integer('quantity')->default(1);
 
-            // Tổng tiền
             $table->decimal('total_amount', 10, 2);
 
-            // Phương thức thanh toán
             $table->enum('payment_method', [
                 'cash',
                 'momo',

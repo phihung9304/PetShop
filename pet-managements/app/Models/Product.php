@@ -15,7 +15,6 @@ class Product extends Model
         'category'
     ];
 
-    // 1 sản phẩm có nhiều kho
     public function inventories()
     {
         return $this->hasMany(Inventory::class);
