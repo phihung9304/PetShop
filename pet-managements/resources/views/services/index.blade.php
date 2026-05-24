@@ -46,7 +46,7 @@
             border-radius: 8px;
             border: 1px solid #ddd;
             outline: none;
-            min-width: 55%;
+            min-width: 48.5%;
         }
 
         .filter-bar input:focus {

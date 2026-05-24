@@ -274,6 +274,9 @@
             width: 100%;
             text-align: center;
         }
+        .filter-bar input{
+            min-width: 100%;
+        }
 
         .table {
             table-layout: auto;

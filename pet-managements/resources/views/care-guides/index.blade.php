@@ -58,7 +58,7 @@
     }
 
     .filter-bar input {
-        min-width: 55%;
+        min-width: 48.5%;
     }
 
     .filter-bar select {

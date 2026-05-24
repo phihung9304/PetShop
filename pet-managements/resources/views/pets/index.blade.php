@@ -49,6 +49,9 @@
             outline: none;
             width: 200px;
         }
+        .filter-bar input{
+            min-width: 30%;
+        }
 
         .filter-bar input:focus,
         .filter-bar select:focus {

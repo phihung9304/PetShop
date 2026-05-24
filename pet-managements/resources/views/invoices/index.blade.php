@@ -46,14 +46,21 @@
         box-shadow: 0 6px 18px rgba(0,0,0,0.04);
     }
 
-    .filter-bar input,
     .filter-bar select {
         padding: 8px 12px;
         border-radius: 8px;
         border: 1px solid #ddd;
         outline: none;
-        min-width: 150px;
+        min-width: 5%;
         background: #fff;
+    }
+    .filter-bar input{
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        outline: none;
+        background: #fff;
+        width: 14%;
     }
 
     .filter-bar input:focus,
