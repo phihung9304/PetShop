@@ -14,9 +14,9 @@
             height: 100%;
             margin: 0;
             background: #fffaf5;
+            font-family: Arial, sans-serif;
         }
 
-        /* FULL LAYOUT HEIGHT */
         .container-fluid,
         .row {
             min-height: 100vh;
@@ -38,7 +38,6 @@
         .sidebar h4 {
             font-weight: bold;
             margin-bottom: 30px;
-            color: #fff;
         }
 
         .sidebar a {
@@ -47,11 +46,12 @@
             gap: 10px;
             color: #fff7ed;
             padding: 10px 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 8px;
             text-decoration: none;
-            transition: 0.3s;
+            transition: 0.25s;
             font-weight: 500;
+            position: relative;
         }
 
         .sidebar a:hover {
@@ -59,25 +59,26 @@
             transform: translateX(5px);
         }
 
-        /* ACTIVE MENU */
         .sidebar a.active {
             background: rgba(255, 255, 255, 0.35);
             font-weight: 600;
         }
 
-        /* CONTENT AREA */
+        .sidebar a.active::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            width: 4px;
+            height: 60%;
+            background: white;
+            border-radius: 10px;
+        }
+
+        /* CONTENT */
         .content-area {
             min-height: 100vh;
             padding: 20px;
             overflow-y: auto;
-        }
-
-        /* NAVBAR (nếu có dùng sau này) */
-        .navbar {
-            background: #ffffff !important;
-            border-radius: 14px;
-            box-shadow: 0 5px 15px rgba(251, 146, 60, 0.12);
-            color: #fb923c;
         }
 
         /* CARD */
@@ -85,12 +86,47 @@
             border: 1px solid #fed7aa;
             border-radius: 16px;
             box-shadow: 0 8px 20px rgba(251, 146, 60, 0.08);
-            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(251, 146, 60, 0.15);
+        /* USER CARD */
+        .user-card {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 12px;
+            border-radius: 14px;
+            backdrop-filter: blur(6px);
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            color: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        /* LOGOUT */
+        .logout-btn {
+            border: none;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.25s;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background: #ef4444;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -102,6 +138,7 @@
 
         <!-- SIDEBAR -->
         <div class="col-md-2 sidebar">
+
             <h4>🐾 Pet Admin</h4>
 
             <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
@@ -143,6 +180,19 @@
             <a href="{{ url('/invoices') }}" class="{{ request()->is('invoices*') ? 'active' : '' }}">
                 <i class="bi bi-wallet2"></i> Hóa đơn
             </a>
+
+            <hr class="text-white opacity-25 my-4">
+
+            <!-- LOGOUT -->
+            <form method="POST" action="{{ url('/logout') }}">
+                @csrf
+
+                <button type="submit" class="logout-btn">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Đăng xuất
+                </button>
+            </form>
+
         </div>
 
         <!-- CONTENT -->

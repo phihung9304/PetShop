@@ -11,25 +11,52 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\RevenueController;
+use App\Http\Controllers\AuthController;
 
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
 
+Route::get('/register', [AuthController::class, 'showRegister']);
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
 
-Route::resource('customers', CustomerController::class);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::resource('pets', PetController::class);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::resource('services', ServiceController::class);
+/*
+|--------------------------------------------------------------------------
+| PROTECTED ROUTES
+|--------------------------------------------------------------------------
+*/
 
-Route::resource('care-guides', CareGuideController::class);
+Route::middleware('auth')->group(function () {
 
-Route::resource('employees', EmployeeController::class);
+    Route::get('/', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-Route::resource('products', ProductController::class);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::resource('inventories', InventoryController::class);
+    Route::resource('customers', CustomerController::class);
 
-Route::resource('invoices', InvoiceController::class);
+    Route::resource('pets', PetController::class);
 
-Route::get('/revenue', [RevenueController::class, 'index']);
+    Route::resource('services', ServiceController::class);
+
+    Route::resource('care-guides', CareGuideController::class);
+
+    Route::resource('employees', EmployeeController::class);
+
+    Route::resource('products', ProductController::class);
+
+    Route::resource('inventories', InventoryController::class);
+
+    Route::resource('invoices', InvoiceController::class);
+
+    Route::get('/revenue', [RevenueController::class, 'index']);
+});
